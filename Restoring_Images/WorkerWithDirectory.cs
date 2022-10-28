@@ -11,7 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ImageEditor;
-using Restoring_Images.Blurs;
 
 namespace Restoring_Images
 {

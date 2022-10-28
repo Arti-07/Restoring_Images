@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using ImageEditor;
 using System.Security.Policy;
+using Restoring_Images.CurrentFilters;
 
 namespace Restoring_Images
 {
@@ -15,11 +16,21 @@ namespace Restoring_Images
         //private MyImage img;
         private Image freshImage;
 
+        private int kerSize;
+        private Kernel kernel;
+        public MainForm(Kernel ker)
+        {
+            this.kernel = ker;
+            InitializeComponent();
+        }
         public MainForm()
         {
             InitializeComponent();
         }
-        
+        public Kernel GetKernel()
+        {
+            return kernel;
+        }
         private void menuOpen_Click(object sender, EventArgs e)
         {
             var fileDialog = new OpenFileDialog
@@ -91,9 +102,10 @@ namespace Restoring_Images
 
         private void btnGaussianBlur_Click(object sender, EventArgs e)
         {
-            var kernel = GetKernel(boxBlurs.SelectedIndex);
+            var ker = GetKernel(boxBlurs.SelectedIndex);
+            kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex));
             Bitmap srcImage = (Bitmap)Image.FromFile(imagePath);
-            freshImage = MyBlurs.Convolve(srcImage, kernel);
+            freshImage = MyBlurs.Convolve(srcImage, ker);
             pictureBoxNew.Image = freshImage;
         }
 
@@ -105,23 +117,29 @@ namespace Restoring_Images
                 case 0:
                     numericSigma.Enabled = false;
                     richTextBox.Text = "Блочное размытие — это линейный фильтр в пространственной области, в котором каждый пиксель в результирующем изображении имеет значение, равное среднему значению соседних пикселей во входном изображении.";
+                    kernel = new Kernel(GetKernel(indx));
                     break;
                 case 1:
                     numericSigma.Enabled = true;
                     richTextBox.Text = "Размытие по Гауссу в цифровой обработке изображений — способ размытия изображения с помощью функции Гаусса, названной в честь немецкого математика Карла Фридриха Гаусса.";
+                    kernel = new Kernel(GetKernel(indx));
                     break;
                 case 2:
                     numericSigma.Enabled = false;
                     richTextBox.Text = "Motion blur — размытие изображения при повороте камеры, воспроизведении сцен движения или быстро движущихся объектов.";
+                    kernel = new Kernel(GetKernel(indx));
                     break;
                 case 3:
                     numericSigma.Enabled = false;
                     richTextBox.Text = "Motion blur — размытие изображения по диагонали слева направо";
+                    kernel = new Kernel(GetKernel(indx));
                     break;
                 case 4:
                     numericSigma.Enabled = false;
                     richTextBox.Text = "Motion blur — размытие изображения по диагонали справа налево";
+                    kernel = new Kernel(GetKernel(indx));
                     break;
+
                 default:
                     numericSigma.Enabled = false;
                     richTextBox.Text = " ";
@@ -131,24 +149,24 @@ namespace Restoring_Images
         }
         private double[,]GetKernel(int blurIndex)
         {
-            int size = (int)kernelSize.Value;
-            double[,] kernel = new double[size, size];
+            kerSize = (int)kernelSize.Value; 
+            double[,] kernel = new double[kerSize, kerSize];
             switch (blurIndex)
             {
                 case 0:
-                    kernel = MyBlurs.BoxBlur(size);
+                    kernel = MyBlurs.BoxBlur(kerSize);
                     break;
                 case 1:
-                    kernel = MyBlurs.GausBlur(size, (double)numericSigma.Value);
+                    kernel = MyBlurs.GausBlur(kerSize, (double)numericSigma.Value);
                     break;
                 case 2:
-                    kernel = MyBlurs.MotionBlur(size);
+                    kernel = MyBlurs.MotionBlur(kerSize);
                     break;
                 case 3:
-                    kernel = MyBlurs.MotionBlurLeftToRight(size);
+                    kernel = MyBlurs.MotionBlurLeftToRight(kerSize);
                     break;
                 case 4:
-                    kernel = MyBlurs.MotionBlurRightToleft(size);
+                    kernel = MyBlurs.MotionBlurRightToleft(kerSize);
                     break;
                 default:
                     break;
@@ -161,6 +179,17 @@ namespace Restoring_Images
             thread = new Thread(OpenFillMatrix);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+        }
+
+        private void btnCheckKernel_Click(object sender, EventArgs e)
+        {
+            ViewKernel vk = new ViewKernel(kernel);
+            vk.ShowDialog();
+        }
+
+        private void kernelSize_ValueChanged(object sender, EventArgs e)
+        {
+            kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex), (int)kernelSize.Value);
         }
     }
 }

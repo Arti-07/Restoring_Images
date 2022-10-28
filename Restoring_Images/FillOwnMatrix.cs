@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoring_Images.CurrentFilters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Restoring_Images
 {
@@ -16,28 +18,24 @@ namespace Restoring_Images
         public FillOwnMatrix()
         {
             InitializeComponent();
-            dataGrid.ColumnCount = n;
-            dataGrid.Columns[0].Name = "1";
-            dataGrid.Columns[1].Name = "2";
-            dataGrid.Columns[2].Name = "3";
-            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void FillData()
-        {
-
-            int[,] mas =
-            {
-                { 1,2,3},
-                { 4,5,6},
-                { 7,8,9}
-            };
-            int[] row = { 1, 2, 3 };
-            dataGrid.Rows.Add(row.ToString());
-        }
         private void btnFillTable_Click(object sender, EventArgs e)
         {
-            FillData();
+
+            int n = 3;
+            dataGrid.RowCount = n;
+            dataGrid.ColumnCount = n;
+            int[,] a = new int[n, n];
+            Random r = new Random(10);
+            for (int i = 0; i < dataGrid.ColumnCount; i++)
+            {
+                for (int j = 0; j < dataGrid.RowCount; j++)
+                {
+                    a[i, j] = r.Next(10);
+                    dataGrid.Rows[i].Cells[j].Value = a[i, j].ToString();
+                }
+            }
         }
     }
 }
