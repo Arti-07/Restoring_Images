@@ -18,6 +18,7 @@ namespace Restoring_Images
 
         private int kerSize;
         private Kernel kernel;
+
         public MainForm(Kernel ker)
         {
             this.kernel = ker;
@@ -102,10 +103,10 @@ namespace Restoring_Images
 
         private void btnGaussianBlur_Click(object sender, EventArgs e)
         {
-            var ker = GetKernel(boxBlurs.SelectedIndex);
-            kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex));
+            //var ker = GetKernel(boxBlurs.SelectedIndex);
+            //kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex));
             Bitmap srcImage = (Bitmap)Image.FromFile(imagePath);
-            freshImage = MyBlurs.Convolve(srcImage, ker);
+            freshImage = MyBlurs.Convolve(srcImage, kernel.Ker);
             pictureBoxNew.Image = freshImage;
         }
 
@@ -168,6 +169,16 @@ namespace Restoring_Images
                 case 4:
                     kernel = MyBlurs.MotionBlurRightToleft(kerSize);
                     break;
+                case 5:
+                    kernel = MyBlurs.HorizontalBlur(kerSize);
+                    break;
+                case 6:
+                    kernel = MyBlurs.VerticalBlur(kerSize);
+                    break;
+                case 7:
+                    kernel = MyBlurs.CustomBlur();
+                    btmMakeOwnMatrix.Enabled = true;
+                    break;
                 default:
                     break;
             }
@@ -176,9 +187,12 @@ namespace Restoring_Images
 
         private void btmMakeOwnMatrix_Click(object sender, EventArgs e)
         {
-            thread = new Thread(OpenFillMatrix);
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            //thread = new Thread(OpenFillMatrix);
+            //thread.SetApartmentState(ApartmentState.STA);
+            //thread.Start();
+            FillOwnMatrix ownMatr = new FillOwnMatrix(kernel);
+            ownMatr.ShowDialog();
+            kernel = ownMatr.GetKer();
         }
 
         private void btnCheckKernel_Click(object sender, EventArgs e)

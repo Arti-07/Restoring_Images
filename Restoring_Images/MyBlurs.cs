@@ -103,15 +103,19 @@ namespace Restoring_Images
             return GetNormalizedMatrix(kernel);
         }
 
-        public static double[,]LeftBlur(int lenght)
+        public static double[,]HorizontalBlur(int lenght)
         {
             return null;
         }
-        public static double[,]UpDownBlur(int lenght)
+        public static double[,]VerticalBlur(int lenght)
         {
             return null;
         }
-
+        public static double[,]CustomBlur()
+        {
+            double[,] kernel = { { 0, 0, 0 }, { 0, 1.0, 0 }, { 0, 0, 0 } };
+            return kernel;
+        }
         public static Bitmap Convolve(Bitmap srcImage, double[,] kernel)
         {
 

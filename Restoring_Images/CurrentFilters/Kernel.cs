@@ -10,6 +10,14 @@ namespace Restoring_Images.CurrentFilters
     {
         public double[,] Ker { get; set; }
         public int Size { get; set; }
+        public int GetRowCount()
+        {
+            return Ker.GetLength(0);
+        }
+        public int GetColCount()
+        {
+            return Ker.GetLength(1);
+        }
         public Kernel(double[,] ker)
         {
             Ker = ker;

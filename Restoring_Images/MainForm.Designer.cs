@@ -194,7 +194,10 @@ namespace Restoring_Images
             "Gaussian Blur",
             "Motion Blur",
             "Motion Blur (left to right)",
-            "Motion Blur (right to left)"});
+            "Motion Blur (right to left)",
+            "Horizontal Blur",
+            "Vertical Blur",
+            "Custom Blur"});
             this.boxBlurs.Location = new System.Drawing.Point(709, 118);
             this.boxBlurs.Name = "boxBlurs";
             this.boxBlurs.Size = new System.Drawing.Size(237, 31);
@@ -300,6 +303,7 @@ namespace Restoring_Images
             this.btmMakeOwnMatrix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btmMakeOwnMatrix.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(119)))), ((int)(((byte)(0)))));
             this.btmMakeOwnMatrix.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btmMakeOwnMatrix.Enabled = false;
             this.btmMakeOwnMatrix.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btmMakeOwnMatrix.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btmMakeOwnMatrix.ForeColor = System.Drawing.Color.Transparent;

@@ -1,12 +1,5 @@
 ﻿using Restoring_Images.CurrentFilters;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Restoring_Images
@@ -33,6 +26,10 @@ namespace Restoring_Images
         {
             InitializeComponent();
             kernel = k;
+            foreach (DataGridViewColumn col in dataGrid.Columns)
+            {
+                col.Width = 30;
+            }
         }
         public ViewKernel()
         {
@@ -52,6 +49,10 @@ namespace Restoring_Images
                 {
                     dataGrid.Rows[i].Cells[j].Value = mas[i, j].ToString();
                 }
+            }
+            foreach (DataGridViewColumn col in dataGrid.Columns)
+            {
+                col.Width = 50;
             }
         }
     }

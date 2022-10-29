@@ -29,33 +29,31 @@
         private void InitializeComponent()
         {
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.btnAddCol = new System.Windows.Forms.Button();
             this.btnFillTable = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.btnAddColMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddRowMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSaveKernelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnShowNormalizeMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGrid
             // 
+            this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(12, 12);
+            this.dataGrid.Location = new System.Drawing.Point(12, 58);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersWidth = 51;
             this.dataGrid.RowTemplate.Height = 29;
-            this.dataGrid.Size = new System.Drawing.Size(428, 426);
+            this.dataGrid.Size = new System.Drawing.Size(574, 414);
             this.dataGrid.TabIndex = 0;
-            // 
-            // btnAddCol
-            // 
-            this.btnAddCol.Location = new System.Drawing.Point(446, 393);
-            this.btnAddCol.Name = "btnAddCol";
-            this.btnAddCol.Size = new System.Drawing.Size(178, 45);
-            this.btnAddCol.TabIndex = 1;
-            this.btnAddCol.Text = "Add column";
-            this.btnAddCol.UseVisualStyleBackColor = true;
             // 
             // btnFillTable
             // 
-            this.btnFillTable.Location = new System.Drawing.Point(446, 341);
+            this.btnFillTable.Location = new System.Drawing.Point(635, 58);
             this.btnFillTable.Name = "btnFillTable";
             this.btnFillTable.Size = new System.Drawing.Size(155, 46);
             this.btnFillTable.TabIndex = 2;
@@ -63,25 +61,86 @@
             this.btnFillTable.UseVisualStyleBackColor = true;
             this.btnFillTable.Click += new System.EventHandler(this.btnFillTable_Click);
             // 
+            // menuStrip
+            // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddColMenu,
+            this.btnAddRowMenu,
+            this.btnSaveKernelMenu,
+            this.btnShowNormalizeMenu});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1078, 28);
+            this.menuStrip.TabIndex = 3;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // btnAddColMenu
+            // 
+            this.btnAddColMenu.Name = "btnAddColMenu";
+            this.btnAddColMenu.Size = new System.Drawing.Size(104, 24);
+            this.btnAddColMenu.Text = "Add column";
+            this.btnAddColMenu.Click += new System.EventHandler(this.btnAddColMenu_Click);
+            // 
+            // btnAddRowMenu
+            // 
+            this.btnAddRowMenu.Name = "btnAddRowMenu";
+            this.btnAddRowMenu.Size = new System.Drawing.Size(80, 24);
+            this.btnAddRowMenu.Text = "Add row";
+            this.btnAddRowMenu.Click += new System.EventHandler(this.btnAddRowMenu_Click);
+            // 
+            // btnSaveKernelMenu
+            // 
+            this.btnSaveKernelMenu.Name = "btnSaveKernelMenu";
+            this.btnSaveKernelMenu.Size = new System.Drawing.Size(125, 24);
+            this.btnSaveKernelMenu.Text = "Save this kernel";
+            this.btnSaveKernelMenu.Click += new System.EventHandler(this.btnSaveKernelMenu_Click);
+            // 
+            // btnShowNormalizeMenu
+            // 
+            this.btnShowNormalizeMenu.Name = "btnShowNormalizeMenu";
+            this.btnShowNormalizeMenu.Size = new System.Drawing.Size(173, 24);
+            this.btnShowNormalizeMenu.Text = "Show normalize kernel";
+            this.btnShowNormalizeMenu.Click += new System.EventHandler(this.btnShowNormalizeMenu_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(635, 148);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(319, 204);
+            this.listBox1.TabIndex = 4;
+            // 
             // FillOwnMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1078, 484);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnFillTable);
-            this.Controls.Add(this.btnAddCol);
             this.Controls.Add(this.dataGrid);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "FillOwnMatrix";
             this.Text = "FillOwnMatrix";
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGrid;
-        private System.Windows.Forms.Button btnAddCol;
         private System.Windows.Forms.Button btnFillTable;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem btnAddColMenu;
+        private System.Windows.Forms.ToolStripMenuItem btnAddRowMenu;
+        private System.Windows.Forms.ToolStripMenuItem btnSaveKernelMenu;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripMenuItem btnShowNormalizeMenu;
     }
 }
