@@ -34,6 +34,7 @@ namespace Restoring_Images
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.workWithManyFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxOld = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -77,7 +78,8 @@ namespace Restoring_Images
             // 
             this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpen,
-            this.menuSave});
+            this.menuSave,
+            this.btnExitMenu});
             this.menuFile.Name = "menuFile";
             this.menuFile.Size = new System.Drawing.Size(46, 24);
             this.menuFile.Text = "File";
@@ -85,22 +87,29 @@ namespace Restoring_Images
             // menuOpen
             // 
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(128, 26);
-            this.menuOpen.Text = "Open";
+            this.menuOpen.Size = new System.Drawing.Size(224, 26);
+            this.menuOpen.Text = "Open ...";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(128, 26);
-            this.menuSave.Text = "Save";
+            this.menuSave.Size = new System.Drawing.Size(224, 26);
+            this.menuSave.Text = "Save as ...";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
+            // 
+            // btnExitMenu
+            // 
+            this.btnExitMenu.Name = "btnExitMenu";
+            this.btnExitMenu.Size = new System.Drawing.Size(224, 26);
+            this.btnExitMenu.Text = "Exit";
+            this.btnExitMenu.Click += new System.EventHandler(this.btnExitMenu_Click);
             // 
             // workWithManyFilesToolStripMenuItem
             // 
             this.workWithManyFilesToolStripMenuItem.Name = "workWithManyFilesToolStripMenuItem";
-            this.workWithManyFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
-            this.workWithManyFilesToolStripMenuItem.Text = "Work with many files";
+            this.workWithManyFilesToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.workWithManyFilesToolStripMenuItem.Text = "Blur all directory";
             this.workWithManyFilesToolStripMenuItem.Click += new System.EventHandler(this.workWithManyFilesToolStripMenuItem_Click);
             // 
             // pictureBoxOld
@@ -265,7 +274,7 @@ namespace Restoring_Images
             // numericSigma
             // 
             this.numericSigma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericSigma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(0)))));
+            this.numericSigma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(115)))));
             this.numericSigma.DecimalPlaces = 1;
             this.numericSigma.Enabled = false;
             this.numericSigma.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -392,6 +401,7 @@ namespace Restoring_Images
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.Button btmMakeOwnMatrix;
         private System.Windows.Forms.Button btnCheckKernel;
+        private System.Windows.Forms.ToolStripMenuItem btnExitMenu;
     }
 }
 

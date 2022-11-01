@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ImageEditor;
+using Restoring_Images.CurrentFilters;
 
 namespace Restoring_Images
 {
@@ -22,12 +18,18 @@ namespace Restoring_Images
         private List<Image> imagesFromDirectory;
         private List<Image> bluredImages;
 
+        private Kernel kernel;
 
         public WorkerWithDirectory()
         {
             InitializeComponent();
         }
-
+        public WorkerWithDirectory(Kernel kernel)
+        {
+            InitializeComponent();
+            this.kernel = kernel;
+            textBoxSelectedFilter.Text = $"{kernel.Name} , size = {kernel.Size}";
+        }
         private void backToRestoringImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -69,88 +71,24 @@ namespace Restoring_Images
                 imagesFromDirectory.Add(new Bitmap(imgPath));
             }
 
-            int selectedFilter = comboBoxFilters.SelectedIndex; 
-            Thread thread1 = new Thread(()=>
+            Thread thread = new Thread(()=>
             {
-                BlurAllImages(imagesFromDirectory, selectedFilter);
+                BlurImages(imagesFromDirectory);
                 string savePath = $@"{dir}\";
                 SaveImages(savePath, bluredImages);
             });
-            thread1.Start();
-            //BlurAllImages(comboBoxFilters.SelectedIndex);
-            //string savePath = $@"{dir}\";
-            //SaveImages(savePath, bluredImages);
+            thread.Start();
         }
 
-        private void BlurAllImages(List<Image> sourceImages, int blurNum)
+        private void BlurImages(List<Image> sourseImages)
         {
-            //progressBar.Value = 0;
-            //progressBar.Maximum = imagesFromDirectory.Count;
-            //var step = 1 / progressBar.Maximum;
-
             bluredImages = new List<Image>();
-            switch (blurNum)
+            foreach (Image img in sourseImages) 
             {
-                case 0:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.Blur3x3Filter));
-                        //progressBar.Value += (int) step;
-                    }
-                    break;
-                case 1:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.Blur5x5Filter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 2:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.Gaussian3x3BlurFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 3:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.Gaussian5x5BlurFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 4:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.MotionBlurFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 5:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.MotionBlurLeftToRightFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 6:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.MotionBlurRightToLeftFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
-                case 7:
-                    foreach (Image image in sourceImages)
-                    {
-                        bluredImages.Add(image.Convolution(MyFilters.SoftenFilter));
-                        //progressBar.Value += (int)step;
-                    }
-                    break;
+                Bitmap bitmap = (Bitmap)img;
+                bluredImages.Add(MyBlurs.Convolve(bitmap, kernel.Ker));
             }
-            //progressBar.Value = progressBar.Maximum;
         }
-
 
         private void SaveImages(string path, List<Image>images)
         {

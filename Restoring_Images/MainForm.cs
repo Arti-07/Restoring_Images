@@ -17,7 +17,7 @@ namespace Restoring_Images
         private Image freshImage;
 
         private int kerSize;
-        private Kernel kernel;
+        private Kernel kernel = new Kernel();
 
         public MainForm(Kernel ker)
         {
@@ -93,13 +93,9 @@ namespace Restoring_Images
 
         private void OpenWorkWithMany(object sender)    
         {
-            Application.Run(new WorkerWithDirectory());
+            Application.Run(new WorkerWithDirectory(kernel));
         }
 
-        private void OpenFillMatrix(object sender)
-        {
-            Application.Run(new FillOwnMatrix());
-        }
 
         private void btnGaussianBlur_Click(object sender, EventArgs e)
         {
@@ -113,36 +109,58 @@ namespace Restoring_Images
         private void boxBlurs_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indx = boxBlurs.SelectedIndex;
+            Color col = Color.FromArgb(255, 215, 115);
             switch (indx)
             {
                 case 0:
                     numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
                     richTextBox.Text = "Блочное размытие — это линейный фильтр в пространственной области, в котором каждый пиксель в результирующем изображении имеет значение, равное среднему значению соседних пикселей во входном изображении.";
-                    kernel = new Kernel(GetKernel(indx));
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
                     break;
                 case 1:
                     numericSigma.Enabled = true;
+                    col = Color.FromArgb(255, 183, 0);
+                    numericSigma.BackColor = col;
                     richTextBox.Text = "Размытие по Гауссу в цифровой обработке изображений — способ размытия изображения с помощью функции Гаусса, названной в честь немецкого математика Карла Фридриха Гаусса.";
-                    kernel = new Kernel(GetKernel(indx));
+                    //kernel = new Kernel(GetKernel(indx));
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
                     break;
                 case 2:
                     numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
                     richTextBox.Text = "Motion blur — размытие изображения при повороте камеры, воспроизведении сцен движения или быстро движущихся объектов.";
-                    kernel = new Kernel(GetKernel(indx));
+                    //kernel = new Kernel(GetKernel(indx));
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
                     break;
                 case 3:
                     numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
                     richTextBox.Text = "Motion blur — размытие изображения по диагонали слева направо";
-                    kernel = new Kernel(GetKernel(indx));
+                    //kernel = new Kernel(GetKernel(indx));
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
                     break;
                 case 4:
                     numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
                     richTextBox.Text = "Motion blur — размытие изображения по диагонали справа налево";
-                    kernel = new Kernel(GetKernel(indx));
+                    //kernel = new Kernel(GetKernel(indx));
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
                     break;
 
                 default:
                     numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
                     richTextBox.Text = " ";
                     break;
             }
@@ -187,9 +205,6 @@ namespace Restoring_Images
 
         private void btmMakeOwnMatrix_Click(object sender, EventArgs e)
         {
-            //thread = new Thread(OpenFillMatrix);
-            //thread.SetApartmentState(ApartmentState.STA);
-            //thread.Start();
             FillOwnMatrix ownMatr = new FillOwnMatrix(kernel);
             ownMatr.ShowDialog();
             kernel = ownMatr.GetKer();
@@ -203,7 +218,14 @@ namespace Restoring_Images
 
         private void kernelSize_ValueChanged(object sender, EventArgs e)
         {
-            kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex), (int)kernelSize.Value);
+            //kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex), (int)kernelSize.Value);
+            kernel.Ker = GetKernel(boxBlurs.SelectedIndex);
+            kernel.Size = (int)kernelSize.Value;
+        }
+
+        private void btnExitMenu_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
