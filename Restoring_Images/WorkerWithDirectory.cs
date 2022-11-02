@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Restoring_Images.CurrentFilters;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ProgressBar = System.Windows.Forms.ProgressBar;
 
 namespace Restoring_Images
 {
@@ -19,6 +21,7 @@ namespace Restoring_Images
         private List<Image> bluredImages;
 
         private Kernel kernel;
+        private int filesCount;
 
         public WorkerWithDirectory()
         {
@@ -43,6 +46,7 @@ namespace Restoring_Images
             Application.Run(new MainForm());
         }
 
+
         private void btnSelectDirectory_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
@@ -54,12 +58,14 @@ namespace Restoring_Images
                     MessageBox.Show($@"Files found : {Files.Count}", "Message");
                     Path = fbd.SelectedPath;
                     textBoxDic.Text = $@"{Path}";
+                    filesCount = Files.Count;
                 }
             }
         }
 
         private void btnStartBlurring_Click(object sender, EventArgs e)
         {
+            progressBar.Maximum = filesCount;
             string dir = $@"{Path}\test";
             if (!Directory.Exists(dir))
             {
@@ -71,22 +77,28 @@ namespace Restoring_Images
                 imagesFromDirectory.Add(new Bitmap(imgPath));
             }
 
-            Thread thread = new Thread(()=>
-            {
-                BlurImages(imagesFromDirectory);
-                string savePath = $@"{dir}\";
-                SaveImages(savePath, bluredImages);
-            });
-            thread.Start();
+            BlurImages(imagesFromDirectory, progressBar);
+            MessageBox.Show("Успех!", "Сообщение", MessageBoxButtons.OK);
+            string savePath = $@"{dir}\";
+            SaveImages(savePath, bluredImages);
+
+            //Thread thread = new Thread(()=>
+            //{
+            //    BlurImages(imagesFromDirectory);
+            //    string savePath = $@"{dir}\";
+            //    SaveImages(savePath, bluredImages);
+            //});
+            //thread.Start();
         }
 
-        private void BlurImages(List<Image> sourseImages)
+        private void BlurImages(List<Image> sourseImages, ProgressBar pb)
         {
             bluredImages = new List<Image>();
             foreach (Image img in sourseImages) 
             {
                 Bitmap bitmap = (Bitmap)img;
                 bluredImages.Add(MyBlurs.Convolve(bitmap, kernel.Ker));
+                pb.Value += 1;
             }
         }
 
@@ -98,7 +110,6 @@ namespace Restoring_Images
                 img.Save($"{path}\\Image{index}.jpg",ImageFormat.Jpeg);
                 index++;    
             }
-
         }
     }
 }

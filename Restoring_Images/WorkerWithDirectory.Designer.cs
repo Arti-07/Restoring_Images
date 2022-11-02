@@ -67,9 +67,9 @@ namespace Restoring_Images
             this.btnStartBlurirng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStartBlurirng.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStartBlurirng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartBlurirng.Location = new System.Drawing.Point(470, 239);
+            this.btnStartBlurirng.Location = new System.Drawing.Point(154, 178);
             this.btnStartBlurirng.Name = "btnStartBlurirng";
-            this.btnStartBlurirng.Size = new System.Drawing.Size(318, 139);
+            this.btnStartBlurirng.Size = new System.Drawing.Size(494, 110);
             this.btnStartBlurirng.TabIndex = 1;
             this.btnStartBlurirng.Text = "Start Bluring";
             this.btnStartBlurirng.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@ namespace Restoring_Images
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDic.AutoSize = true;
             this.labelDic.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelDic.Location = new System.Drawing.Point(470, 93);
+            this.labelDic.Location = new System.Drawing.Point(12, 115);
             this.labelDic.Name = "labelDic";
             this.labelDic.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelDic.Size = new System.Drawing.Size(146, 23);
@@ -107,10 +107,10 @@ namespace Restoring_Images
             this.textBoxDic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDic.Location = new System.Drawing.Point(395, 119);
+            this.textBoxDic.Location = new System.Drawing.Point(164, 115);
             this.textBoxDic.Name = "textBoxDic";
             this.textBoxDic.ReadOnly = true;
-            this.textBoxDic.Size = new System.Drawing.Size(299, 27);
+            this.textBoxDic.Size = new System.Drawing.Size(624, 27);
             this.textBoxDic.TabIndex = 5;
             // 
             // btnSelectDirectory
@@ -118,9 +118,9 @@ namespace Restoring_Images
             this.btnSelectDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelectDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelectDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSelectDirectory.Location = new System.Drawing.Point(12, 97);
+            this.btnSelectDirectory.Location = new System.Drawing.Point(478, 32);
             this.btnSelectDirectory.Name = "btnSelectDirectory";
-            this.btnSelectDirectory.Size = new System.Drawing.Size(333, 49);
+            this.btnSelectDirectory.Size = new System.Drawing.Size(310, 49);
             this.btnSelectDirectory.TabIndex = 6;
             this.btnSelectDirectory.Text = "Select Directory";
             this.btnSelectDirectory.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@ namespace Restoring_Images
             // progressBar
             // 
             this.progressBar.ForeColor = System.Drawing.Color.Red;
-            this.progressBar.Location = new System.Drawing.Point(12, 349);
+            this.progressBar.Location = new System.Drawing.Point(12, 335);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(451, 29);
+            this.progressBar.Size = new System.Drawing.Size(776, 43);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 7;
             // 
@@ -140,7 +140,7 @@ namespace Restoring_Images
             this.textBoxSelectedFilter.Location = new System.Drawing.Point(173, 43);
             this.textBoxSelectedFilter.Name = "textBoxSelectedFilter";
             this.textBoxSelectedFilter.ReadOnly = true;
-            this.textBoxSelectedFilter.Size = new System.Drawing.Size(172, 27);
+            this.textBoxSelectedFilter.Size = new System.Drawing.Size(246, 27);
             this.textBoxSelectedFilter.TabIndex = 8;
             // 
             // WorkerWithDirectory

@@ -105,13 +105,25 @@ namespace Restoring_Images
 
         public static double[,]HorizontalBlur(int lenght)
         {
-            return null;
+            double[,] kernel = new double[lenght, lenght];
+            int centralRowInx = (int)(lenght / 2);
+            for (int i = 0; i < lenght; i++)
+            {
+                kernel[centralRowInx, i] = 1;
+            }
+            return GetNormalizedMatrix(kernel);
         }
         public static double[,]VerticalBlur(int lenght)
         {
-            return null;
+            double[,] kernel = new double[lenght, lenght];
+            int centralRowInx = (int)(lenght / 2);
+            for (int i = 0; i < lenght; i++)
+            {
+                kernel[i, centralRowInx] = 1;
+            }
+            return GetNormalizedMatrix(kernel);
         }
-        public static double[,]CustomBlur()
+        public static double[,]CustomBlur(int lenght)
         {
             double[,] kernel = { { 0, 0, 0 }, { 0, 1.0, 0 }, { 0, 0, 0 } };
             return kernel;

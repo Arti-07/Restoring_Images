@@ -157,7 +157,30 @@ namespace Restoring_Images
                     kernel.Size = (int)kernelSize.Value;
                     kernel.Name = boxBlurs.Text;
                     break;
-
+                case 5:
+                    numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
+                    richTextBox.Text = "Horizontal blur - равномерный смаз по горизонатли. Желательно использовать матрицу с нечетным размером.";
+                    kernel.Ker=GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
+                    break;
+                case 6:
+                    numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
+                    richTextBox.Text = "Vertical blur - равномерный смаз по вертикали. Желательно использовать матрицу с нечетным размером.";
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
+                    break;
+                case 7:
+                    numericSigma.Enabled = false;
+                    numericSigma.BackColor = col;
+                    richTextBox.Text = "Custom Blur - Ваше собственное размытие, можно задать по кнопке ниже. По умолчанию - ядро копирования.";
+                    kernel.Ker = GetKernel(indx);
+                    kernel.Size = (int)kernelSize.Value;
+                    kernel.Name = boxBlurs.Text;
+                    break;
                 default:
                     numericSigma.Enabled = false;
                     numericSigma.BackColor = col;
@@ -194,7 +217,7 @@ namespace Restoring_Images
                     kernel = MyBlurs.VerticalBlur(kerSize);
                     break;
                 case 7:
-                    kernel = MyBlurs.CustomBlur();
+                    kernel = MyBlurs.CustomBlur(kerSize);
                     btmMakeOwnMatrix.Enabled = true;
                     break;
                 default:
