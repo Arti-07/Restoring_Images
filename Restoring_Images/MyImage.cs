@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.IO;
-using ImageEditor;
 namespace Restoring_Images
 {
     public class MyImage
@@ -85,7 +84,7 @@ namespace Restoring_Images
 
         public Image MakeBlackAndWhite(Image img)
         {
-            return img.ToBlackAndWhite();
+            return img;
         }
 
     }
