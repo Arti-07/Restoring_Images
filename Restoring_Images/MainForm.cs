@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
-using ImageEditor;
+//using ImageEditor;
 using System.Security.Policy;
 using Restoring_Images.CurrentFilters;
 
@@ -77,10 +77,12 @@ namespace Restoring_Images
         private void btnDeblur_Click(object sender, EventArgs e)
         {
             /*deblur*/
+            /*
             ConvolutionFilter deblurFilter = new ConvolutionFilter();
             Image deblurImage =
                 InverseFiltering.Filtering(image, MyFilters.MotionBlurLeftToRightFilter, out deblurFilter);
             pictureBoxNew.Image = deblurImage;
+            */
         }
 
         private void workWithManyFilesToolStripMenuItem_Click(object sender, EventArgs e)

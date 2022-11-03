@@ -64,24 +64,6 @@ namespace Restoring_Images
             return resultMatrix;
         }
 
-        private void btnFillTable_Click(object sender, EventArgs e)
-        {
-
-            int n = 3;
-            dataGrid.RowCount = n;
-            dataGrid.ColumnCount = n;
-            int[,] a = new int[n, n];
-            Random r = new Random(10);
-            for (int i = 0; i < dataGrid.ColumnCount; i++)
-            {
-                for (int j = 0; j < dataGrid.RowCount; j++)
-                {
-                    a[i, j] = r.Next(10);
-                    dataGrid.Rows[i].Cells[j].Value = a[i, j].ToString();
-                }
-            }
-        }
-
         private void btnAddColMenu_Click(object sender, EventArgs e)
         {
             dataGrid.Columns.Add("", "");
@@ -112,8 +94,9 @@ namespace Restoring_Images
                 }
             }
             kernel.Ker = GetNormalizedMatrix(DataValue);
-
-
+            MessageBox.Show("Успешное сохранение матрицы!", "Сообщение",
+                MessageBoxButtons.OK);
+            /*
             for (int i = 0; i < DataValue.GetLength(0); i++)
             {
                 for (int j = 0; j < DataValue.GetLength(1); j++)
@@ -121,6 +104,7 @@ namespace Restoring_Images
                     listBox1.Items.Add(kernel.Ker[i, j].ToString());
                 }
             }
+            */
         }
 
         private void btnShowNormalizeMenu_Click(object sender, EventArgs e)

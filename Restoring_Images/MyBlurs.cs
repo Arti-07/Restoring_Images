@@ -91,7 +91,8 @@ namespace Restoring_Images
 
         public static double[,] BoxBlur(int radius)
         {
-            int n = 2 * radius + 1;
+            //int n = 2 * radius + 1;
+            int n = radius;
             double[,] kernel = new double[n, n];
             for (int i = 0; i < n; i++)
             {
@@ -125,8 +126,11 @@ namespace Restoring_Images
         }
         public static double[,]CustomBlur(int lenght)
         {
-            double[,] kernel = { { 0, 0, 0 }, { 0, 1.0, 0 }, { 0, 0, 0 } };
-            return kernel;
+            //double[,] kernel = { { 0, 0, 0 }, { 0, 1.0, 0 }, { 0, 0, 0 } };
+            double[,] kernel = new double[lenght, lenght];
+            int centralRowInx = (int)(lenght / 2);
+            kernel[centralRowInx, centralRowInx] = 1;
+            return GetNormalizedMatrix(kernel);
         }
         public static Bitmap Convolve(Bitmap srcImage, double[,] kernel)
         {

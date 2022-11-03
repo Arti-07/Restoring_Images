@@ -87,21 +87,21 @@ namespace Restoring_Images
             // menuOpen
             // 
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(224, 26);
+            this.menuOpen.Size = new System.Drawing.Size(154, 26);
             this.menuOpen.Text = "Open ...";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(224, 26);
+            this.menuSave.Size = new System.Drawing.Size(154, 26);
             this.menuSave.Text = "Save as ...";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // btnExitMenu
             // 
             this.btnExitMenu.Name = "btnExitMenu";
-            this.btnExitMenu.Size = new System.Drawing.Size(224, 26);
+            this.btnExitMenu.Size = new System.Drawing.Size(154, 26);
             this.btnExitMenu.Text = "Exit";
             this.btnExitMenu.Click += new System.EventHandler(this.btnExitMenu_Click);
             // 
@@ -231,6 +231,11 @@ namespace Restoring_Images
             this.kernelSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(0)))));
             this.kernelSize.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kernelSize.ForeColor = System.Drawing.Color.Black;
+            this.kernelSize.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.kernelSize.Location = new System.Drawing.Point(709, 80);
             this.kernelSize.Minimum = new decimal(new int[] {
             3,
@@ -363,7 +368,7 @@ namespace Restoring_Images
             this.MinimumSize = new System.Drawing.Size(937, 585);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Restoring Images";
+            this.Text = "Blurring Images";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOld)).EndInit();
