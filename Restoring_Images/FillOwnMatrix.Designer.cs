@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FillOwnMatrix));
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.btnAddColMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +100,7 @@
             this.ClientSize = new System.Drawing.Size(809, 463);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FillOwnMatrix";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
