@@ -103,9 +103,17 @@ namespace Restoring_Images
         {
             //var ker = GetKernel(boxBlurs.SelectedIndex);
             //kernel = new Kernel(GetKernel(boxBlurs.SelectedIndex));
-            Bitmap srcImage = (Bitmap)Image.FromFile(imagePath);
-            freshImage = MyBlurs.Convolve(srcImage, kernel.Ker);
-            pictureBoxNew.Image = freshImage;
+            try
+            {
+                Bitmap srcImage = (Bitmap)Image.FromFile(imagePath);
+                freshImage = MyBlurs.Convolve(srcImage, kernel.Ker);
+                pictureBoxNew.Image = freshImage;
+            }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         private void boxBlurs_SelectedIndexChanged(object sender, EventArgs e)
